@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Buildility Infraco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Design System Variables */
+        :root {
+            --color-primary: #2C5F4E;
+            --color-accent: #D4AF37;
+            --color-bg: #F8F5F0;
+            --color-card: #FFFFFF;
+            --color-text: #1F2937;
+            --color-muted: #6B7280;
+            --color-light: #F9FAFB;
+            --radius: 16px;
+            --radius-lg: 24px;
+            --container: 1200px;
+            --shadow-sm: 0 2px 8px rgba(44, 95, 78, 0.06);
+            --shadow-md: 0 8px 24px rgba(44, 95, 78, 0.1);
+            --shadow-lg: 0 16px 48px rgba(44, 95, 78, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Background Elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(44, 95, 78, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 60px 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 64px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .brand::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            border-radius: 2px;
+        }
+
+        .lead {
+            color: var(--color-muted);
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin-top: 20px;
+            letter-spacing: 0.01em;
+        }
+
+        /* Main Content Card */
+        .about-card {
+            background: var(--color-card);
+            border-radius: var(--radius-lg);
+            padding: 56px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+            background-size: 200% 100%;
+        }
+
+        /* Introduction Text */
+        .intro {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: 48px;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mission Banner */
+        .mission-banner {
+            background: linear-gradient(135deg, rgba(44, 95, 78, 0.05), rgba(212, 175, 55, 0.05));
+            border-left: 4px solid var(--color-accent);
+            padding: 24px 32px;
+            border-radius: var(--radius);
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .mission-banner::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--color-accent);
+            opacity: 0.2;
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .mission-text {
+            font-size: 1rem;
+            color: var(--color-text);
+            font-style: italic;
+            padding-left: 40px;
+        }
+
+        /* Directors Grid */
+        .directors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .director {
+            background: linear-gradient(180deg, #FFFFFF, #FAFAFA);
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 1px solid rgba(44, 95, 78, 0.08);
+            transition: var(--transition);
+            position: relative;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .director:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .director:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .director:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .director::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .director:hover::after {
+            opacity: 1;
+        }
+
+        /* Avatar Section */
+        .avatar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-md), inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: var(--transition);
+            border: 4px solid var(--color-card);
+            letter-spacing: 0.05em;
+        }
+
+        .avatar::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .director:hover .avatar {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .director:hover .avatar::before {
+            opacity: 0.2;
+        }
+
+        /* Director Info */
+        .info {
+            text-align: center;
+        }
+
+        .info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .role {
+            color: var(--color-accent);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+        }
+
+        .bio {
+            color: var(--color-text);
+            font-size: 0.975rem;
+            line-height: 1.75;
+            text-align: left;
+        }
+
+        /* Closing Statement */
+        .closing {
+            background: linear-gradient(135deg, rgba(44, 95, 78, 0.03), rgba(212, 175, 55, 0.03));
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            border: 1px solid rgba(44, 95, 78, 0.08);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            background: rgba(44, 95, 78, 0.05);
+            border: 1px solid rgba(44, 95, 78, 0.1);
+        }
+
+        .back-link:hover {
+            background: var(--color-primary);
+            color: var(--color-card);
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover::before {
+            transform: translateX(-4px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .brand {
+                font-size: 2.25rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .about-card {
+                padding: 32px 24px;
+            }
+
+            .intro {
+                font-size: 1rem;
+                margin-bottom: 32px;
+            }
+
+            .directors {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .director {
+                padding: 24px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+
+            .mission-banner {
+                padding: 20px 24px;
+            }
+
+            .mission-text {
+                padding-left: 32px;
+                font-size: 0.95rem;
+            }
+
+            .closing {
+                padding: 24px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand {
+                font-size: 1.875rem;
+            }
+
+            .about-card {
+                padding: 24px 16px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Subtle Pattern Overlay */
+        .pattern-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(44, 95, 78, 0.01) 35px, rgba(44, 95, 78, 0.01) 70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="pattern-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="brand">BUILDILITY INFRACON</h1>
+            <p class="lead">About Us — Leadership &amp; Vision</p>
+        </header>
+
+        <main class="about-card">
+            <p class="intro">
+                Buildility Infraco is guided by a leadership team that blends visionary design, operational excellence, and deep community values.
+                Our directors combine decades of industry experience with a shared commitment to build responsibly, deliver on time, and create spaces that uplift lives.
+            </p>
+
+            <div class="mission-banner">
+                <p class="mission-text">
+                    Building tomorrow's landmarks with integrity, innovation, and an unwavering commitment to excellence.
+                </p>
+            </div>
+
+            <div class="directors">
+                <div class="director">
+                    <div class="avatar-wrapper">
+                        <div class="avatar">
+                            <img src="assets/manishchandra.jpeg" alt="Manish Chandra" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3>Manish Chandra</h3>
+                        <div class="role">Founder &amp; Managing Director</div>
+                        <p class="bio">
+                            Manish brings a bold vision and hands‑on leadership to Buildility Infraco. With extensive experience in real estate development,
+                            design strategy and project delivery, he drives the company's pursuit of thoughtful luxury and measurable quality.
+                            Manish is known for translating ambitious concepts into practical, high‑value developments while keeping client trust and long‑term sustainability at the center of every decision.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="director">
+                    <div class="avatar-wrapper">
+                        <div class="avatar">
+                            <img src="assets/pallavi ranjan.png" alt="Pallavi Ranjan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3>Pallavi Ranjan</h3>
+                        <div class="role">Director — Operations &amp; Community</div>
+                        <p class="bio">
+                            Pallavi blends operational rigor with a people‑first approach. She oversees project operations, stakeholder engagement,
+                            and the implementation of quality and safety standards across projects. Her commitment to community outcomes and meticulous attention
+                            to process ensure every Buildility development delivers lasting value for residents and investors alike.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="closing">
+                <p>
+                    Together, Manish Chandra and Pallavi Ranjan form a complementary leadership partnership — combining creative ambition with disciplined execution.
+                    Their shared philosophy prioritizes timeless design, responsible construction and meaningful community impact, positioning Buildility Infraco
+                    to create landmark developments that stand the test of time.
+                </p>
+            </div>
+
+            <a class="back-link" href="#">Back to Home</a>
+        </main>
+    </div>
+</body>
+</html>
